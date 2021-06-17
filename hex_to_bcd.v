@@ -1,7 +1,25 @@
 `timescale 1ns / 1ps
-
-module hex_to_seven_segment(
-    input [3:0] bcd,
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    19:37:58 06/17/2021 
+// Design Name: 
+// Module Name:    hex_to_bcd 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module hex_to_bcd(    
+	 input [3:0] bcd,
     output reg [6:0] seg
     );
 	 

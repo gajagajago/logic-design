@@ -1,17 +1,37 @@
 `timescale 1ns / 1ps
-
-module data_memory(
-    input signal_memread,
-    input signal_memwrite,
-    input [7:0] address,
-    input [7:0] data_to_write,
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    19:22:29 06/17/2021 
+// Design Name: 
+// Module Name:    dmem 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module dmem(  
+	 input ctrl_memread,
+    input ctrl_memwrite,
+    input [7:0] addr,
+    input [7:0] data_in,
     input clock,
     input clear,
     output [7:0] data_out
     );
+	 
+	 /*
 	
 	 initial begin
-	             memory[0] <= 8'b0;
+	         memory[0] <= 8'b0;
             memory[1] <= 8'b1;
             memory[2] <= 8'b10;
             memory[3] <= 8'b11;
@@ -28,7 +48,7 @@ module data_memory(
             memory[14] <= 8'b1110;
             memory[15] <= 8'b1111;
             memory[16] <= 8'b0;
-            // 2's complement notation
+            // 2's complement
             memory[17] <= 8'b11111111;
             memory[18] <= 8'b11111110;
             memory[19] <= 8'b11111101;
@@ -45,11 +65,12 @@ module data_memory(
             memory[30] <= 8'b11110010;
             memory[31] <= 8'b11110001;
 	 end
+	 
+	 */
     // 2D array declaration
     reg [7:0] memory[0:31];
 
-    // SHOULD BE wire (only read)
-    assign data_out = memory[address];
+    assign data_out = memory[addr];
 
     always @(posedge clock or posedge clear) begin
 
@@ -71,7 +92,7 @@ module data_memory(
             memory[14] <= 8'b1110;
             memory[15] <= 8'b1111;
             memory[16] <= 8'b0;
-            // 2's complement notation
+            // 2's complement 
             memory[17] <= 8'b11111111;
             memory[18] <= 8'b11111110;
             memory[19] <= 8'b11111101;
@@ -89,9 +110,8 @@ module data_memory(
             memory[31] <= 8'b11110001;
         end
         else begin
-            // write signal
-            if (signal_memwrite) begin
-                memory[address] <= data_to_write;
+            if (ctrl_memwrite) begin
+                memory[addr] <= data_in;
             end
         end
     end

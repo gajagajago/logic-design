@@ -1,19 +1,33 @@
 `timescale 1ns / 1ps
-
-module register_file(
-    input [1:0] read_reg1,
-    input [1:0] read_reg2,
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    19:19:21 06/17/2021 
+// Design Name: 
+// Module Name:    rf 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module rf(    
+	 input [1:0] rs1,
+    input [1:0] rs2,
     input [1:0] write_reg,
     input [7:0] write_data,
-    input signal_regwrite,
+    input ctrl_regwrite,
     input clock,
     input clear,
-    output [7:0] output_reg1,
-    output [7:0] output_reg2,
-    output [7:0] reg0_segment,
-    output [7:0] reg1_segment,
-    output [7:0] reg2_segment,
-    output [7:0] reg3_segment
+    output [7:0] rval1,
+    output [7:0] rval2
     );
 
     // total four registers
@@ -28,14 +42,8 @@ module register_file(
     end
 
     // SHOULD BE wire (only read)
-    assign output_reg1 = register[read_reg1];
-    assign output_reg2 = register[read_reg2];
-
-    // for showing register value to seven segments
-    assign reg0_segment = register[0];
-    assign reg1_segment = register[1];
-    assign reg2_segment = register[2];
-    assign reg3_segment = register[3];
+    assign rval1 = register[rs1];
+    assign rval2 = register[rs2];
 
     // main loop
     always @(posedge clock or posedge clear) begin
@@ -46,7 +54,7 @@ module register_file(
             register[3] <= 8'b0;
         end
         else begin
-            if (signal_regwrite) begin
+            if (ctrl_regwrite) begin
                 register[write_reg] <= write_data;
             end
         end

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    19:30:13 06/17/2021 
+// Create Date:    19:25:22 06/17/2021 
 // Design Name: 
-// Module Name:    sign_extend 
+// Module Name:    add 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,10 +18,12 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module sign_extend(
-    input [1:0] in,
-    output [7:0] out
+module add(
+	 input [7:0] in1,
+    input [7:0] in2,
+    output [7:0] out,
+    input ctrl_aluop
 );
-    assign out = {in[1], in[1], in[1], in[1], in[1], in[1], in[1], in[0]};
-
+    // only need add
+    assign out = in1 + in2;
 endmodule
