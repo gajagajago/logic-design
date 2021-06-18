@@ -19,19 +19,17 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module pc(
-	 input clock,
+    input clock,
     input clear,
     input [7:0] next_pc,
     output [7:0] ppc 
 );
     reg [7:0] curr_pc;
 
-    // initial pc value is 0
     initial begin
         curr_pc <= 8'b0;
     end
 
-    // pc output
     assign ppc = curr_pc;
 
     always @(posedge clock or posedge clear) begin
@@ -39,7 +37,6 @@ module pc(
             curr_pc <= 8'b0;
         end
         else begin
-            // reload pc to next pc
             curr_pc <= next_pc;
         end
     end
