@@ -21,11 +21,11 @@
 module cpu(
 	 input [7:0] instruction,
     	 input fast_clock,
-	 output clock,
     	 input clear,
     	 output [6:0] first_segment,
     	 output [6:0] second_segment,
-    	 output [7:0] read_address
+	 output [7:0] read_address,
+	 output clock,
     );
 
     // 1-second clock
