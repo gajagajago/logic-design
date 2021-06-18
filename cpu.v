@@ -20,32 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 module cpu(
 	 input [7:0] instruction,
-    input fast_clock,
+    	 input fast_clock,
 	 output clock,
-    input clear,
-	 // test outputs need clear // 
-	 output [7:0] rval1,
-	 output [7:0] rval2,
-	 
-	 output [7:0] reg_write_data,
-	 output ctrl_memtoreg,
-	 output ctrl_alusrc,
-	 output [7:0] data_out,
-	 output [7:0] output_alu,
-	 // until here // 
-    output [6:0] first_segment,
-    output [6:0] second_segment,
-    output [7:0] read_address
-
+    	 input clear,
+    	 output [6:0] first_segment,
+    	 output [6:0] second_segment,
+    	 output [7:0] read_address
     );
 
     // 1-second clock
-    //wire clock;
+    wire clock;
 
     // control signals
-	 //wire ctrl_memtoreg;
+    wire ctrl_memtoreg;
     wire ctrl_regwrite;
-    //wire ctrl_alusrc;
+    wire ctrl_alusrc;
     wire ctrl_branch;
     wire ctrl_memread;
     wire ctrl_memwrite;
@@ -53,20 +42,20 @@ module cpu(
     wire ctrl_aluop;
 	 
     // outputs from register file
-    //wire [7:0] rval1;
-    //wire [7:0] rval2;
+    wire [7:0] rval1;
+    wire [7:0] rval2;
 
     // output from sign extend
     wire [7:0] sign_extended_imm;
 
     // output from data memory
-    // wire [7:0] output_memory;
+    wire [7:0] data_out;
 
     // output from ALU 
-    // wire [7:0] output_alu;
+    wire [7:0] output_alu;
 
     // write data for register file, and also input for seven segments
-    //wire [7:0] reg_write_data;
+    wire [7:0] reg_write_data;
     assign reg_write_data = ctrl_memtoreg ? data_out : output_alu;
 
     // wires for next pc
