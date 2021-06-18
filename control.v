@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module control(    
-	 input [1:0] opcode,
+    input [1:0] opcode,
     output ctrl_memtoreg,
     output ctrl_regwrite,
     output ctrl_alusrc,
