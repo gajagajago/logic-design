@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module rf(    
-	 input [1:0] rs1,
+    input [1:0] rs1,
     input [1:0] rs2,
     input [1:0] write_reg,
     input [7:0] write_data,
@@ -30,10 +30,8 @@ module rf(
     output [7:0] rval2
     );
 
-    // total four registers
     reg [7:0] register [0:3];
 
-    // initalize to 0
     initial begin
         register[0] <= 8'b0;
         register[1] <= 8'b0;
@@ -41,11 +39,9 @@ module rf(
         register[3] <= 8'b0;
     end
 
-    // SHOULD BE wire (only read)
     assign rval1 = register[rs1];
     assign rval2 = register[rs2];
 
-    // main loop
     always @(posedge clock or posedge clear) begin
         if (clear) begin
             register[0] <= 8'b0;
